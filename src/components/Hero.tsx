@@ -15,6 +15,7 @@ export default function Hero() {
         treeHueMin={75}
         treeHueMax={110}
         opacity={0.85}
+        scale={1.6}
       />
 
       {/* Dark overlay for text readability */}

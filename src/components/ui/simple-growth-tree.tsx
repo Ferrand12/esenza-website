@@ -42,6 +42,7 @@ interface SimpleTreeProps {
   treeHueMin?: number
   treeHueMax?: number
   opacity?: number
+  scale?: number
 }
 
 export function SimpleTree({
@@ -50,6 +51,7 @@ export function SimpleTree({
   treeHueMin = 20,
   treeHueMax = 40,
   opacity = 1,
+  scale = 1,
 }: SimpleTreeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animationRef = useRef<number>(undefined)
@@ -347,7 +349,7 @@ export function SimpleTree({
       ref={canvasRef}
       className={`cursor-pointer ${className}`}
       onClick={handleClick}
-      style={{ opacity }}
+      style={{ opacity, transform: `scale(${scale})`, transformOrigin: "center bottom" }}
     />
   )
 }
