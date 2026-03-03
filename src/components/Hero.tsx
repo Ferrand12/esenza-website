@@ -1,20 +1,24 @@
+"use client";
+
+import { SimpleTree } from "@/components/ui/simple-growth-tree";
+
 export default function Hero() {
   return (
     <section
       id="inicio"
       className="relative h-screen w-full overflow-hidden"
     >
-      {/* Background image placeholder - replace with actual image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?q=80&w=2070&auto=format&fit=crop')",
-        }}
+      {/* Tree animation background */}
+      <SimpleTree
+        className="absolute inset-0 w-full h-full"
+        bgColor="#014023"
+        treeHueMin={75}
+        treeHueMax={110}
+        opacity={0.85}
       />
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/50" />
 
       {/* Content */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center text-white">
