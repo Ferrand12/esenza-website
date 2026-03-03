@@ -1,26 +1,91 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-esenza-green: #6B8C23;
+  --color-esenza-green-dark: #014023;
+  --color-esenza-green-olive: #7C8C03;
+  --color-esenza-gold: #A99348;
+  --color-esenza-gold-dark: #A68B03;
+  --color-esenza-orange: #CC6518;
+  --color-esenza-cream: #F5F1EB;
+  --color-esenza-cream-dark: #EDE8DF;
+  --color-esenza-white: #FAFAF8;
+  --color-esenza-text: #2D2D2D;
+  --color-esenza-text-light: #5A5A5A;
+
+  --font-heading: "Cormorant Garamond", "Georgia", serif;
+  --font-body: "Cormorant Garamond", "Georgia", serif;
+  --font-script: "Great Vibes", cursive;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-esenza-white);
+  color: var(--color-esenza-text);
+  font-family: var(--font-body);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-esenza-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-esenza-gold);
+  border-radius: 4px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.6s ease-out forwards;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+.animation-delay-600 {
+  animation-delay: 0.6s;
 }
