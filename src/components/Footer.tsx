@@ -46,9 +46,11 @@ export default function Footer() {
             </h4>
             <ul className="mt-4 space-y-3">
               {[
-                { href: "#inicio", label: "Inicio" },
                 { href: "#nosotros", label: "Nosotros" },
                 { href: "#experiencias", label: "Experiencias" },
+                { href: "#retiros", label: "Retiros" },
+                { href: "#eventos", label: "Eventos" },
+                { href: "#hospedaje", label: "Hospedaje" },
                 { href: "#paquetes", label: "Paquetes" },
                 { href: "#galeria", label: "Galería" },
                 { href: "#contacto", label: "Contacto" },
