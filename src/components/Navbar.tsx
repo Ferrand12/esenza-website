@@ -4,16 +4,10 @@ import { useState, useEffect, useRef } from "react";
 
 const navLinks = [
   { href: "#nosotros", label: "Nosotros" },
-  {
-    href: "#experiencias",
-    label: "Experiencias",
-    children: [
-      { href: "#retiros", label: "Retiros" },
-      { href: "#eventos", label: "Eventos" },
-      { href: "#hospedaje", label: "Hospedaje" },
-    ],
-  },
-  { href: "#paquetes", label: "Paquetes" },
+  { href: "#experiencias", label: "Experiencias" },
+  { href: "#retiros", label: "Retiros" },
+  { href: "#hospedaje", label: "Hospedaje" },
+  { href: "#ubicacion", label: "Cómo llegar" },
   { href: "#galeria", label: "Galería" },
   { href: "#contacto", label: "Contacto" },
 ];
@@ -21,140 +15,104 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setDropdownOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const linkClass = (isScrolled: boolean) =>
-    `text-[13px] font-medium tracking-wide uppercase transition-colors duration-300 hover:text-esenza-gold ${
-      isScrolled ? "text-esenza-green-dark" : "text-white"
-    }`;
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-esenza-cream/95 backdrop-blur-md shadow-lg"
+          ? "bg-esenza-cream/96 backdrop-blur-md border-b border-esenza-cream-dark"
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
-          {/* Logo */}
-          <a href="#inicio" className="flex items-center">
-            <span
-              className={`font-script text-3xl transition-colors duration-500 ${
-                scrolled ? "text-esenza-green" : "text-white"
-              }`}
-            >
-              Esenza
-            </span>
+      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+        <div className="flex h-[72px] items-center justify-between">
+
+          {/* Logo — Cormorant Garamond, elegante */}
+          <a
+            href="#inicio"
+            className={`font-heading text-2xl tracking-[0.12em] transition-colors duration-400 ${
+              scrolled ? "text-esenza-text" : "text-white"
+            }`}
+            style={{ fontFamily: "var(--font-cormorant, 'Cormorant Garamond'), Georgia, serif" }}
+          >
+            Esenza
           </a>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-6">
-            {navLinks.map((link) =>
-              link.children ? (
-                <div key={link.href} className="relative" ref={dropdownRef}>
-                  <button
-                    onClick={() => setDropdownOpen(!dropdownOpen)}
-                    className={`${linkClass(scrolled)} flex items-center gap-1`}
-                  >
-                    {link.label}
-                    <svg
-                      className={`h-3.5 w-3.5 transition-transform duration-200 ${
-                        dropdownOpen ? "rotate-180" : ""
-                      }`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  <div
-                    className={`absolute top-full left-1/2 -translate-x-1/2 mt-3 w-44 rounded-xl overflow-hidden shadow-xl transition-all duration-300 ${
-                      dropdownOpen
-                        ? "opacity-100 translate-y-0 pointer-events-auto"
-                        : "opacity-0 -translate-y-2 pointer-events-none"
-                    }`}
-                  >
-                    <div className="bg-white/95 backdrop-blur-md py-2">
-                      {link.children.map((child) => (
-                        <a
-                          key={child.href}
-                          href={child.href}
-                          onClick={() => setDropdownOpen(false)}
-                          className="block px-5 py-2.5 text-[13px] font-medium tracking-wide uppercase text-esenza-green-dark transition-colors hover:bg-esenza-cream hover:text-esenza-gold"
-                        >
-                          {child.label}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <a key={link.href} href={link.href} className={linkClass(scrolled)}>
-                  {link.label}
-                </a>
-              )
-            )}
+          <div className="hidden lg:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`text-[11px] font-medium tracking-[0.18em] uppercase transition-colors duration-300 ${
+                  scrolled
+                    ? "text-esenza-text-mid hover:text-esenza-text"
+                    : "text-white/80 hover:text-white"
+                }`}
+                style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
+              >
+                {link.label}
+              </a>
+            ))}
+
+            {/* CTA — reservar */}
             <a
               href="https://wa.me/573001234567?text=Hola!%20Quiero%20reservar%20en%20Esenza"
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-2 rounded-full bg-esenza-green px-6 py-2 text-[13px] font-semibold tracking-wide uppercase text-white transition-all duration-300 hover:bg-esenza-green-dark hover:shadow-lg"
+              className={`ml-2 text-[11px] font-medium tracking-[0.18em] uppercase px-5 py-2.5 border transition-all duration-300 ${
+                scrolled
+                  ? "border-esenza-text text-esenza-text hover:bg-esenza-text hover:text-esenza-cream"
+                  : "border-white/60 text-white hover:bg-white/10 hover:border-white"
+              }`}
+              style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
             >
               Reservar
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden relative z-50 w-8 h-8 flex flex-col justify-center items-center gap-1.5"
+            className="lg:hidden z-50 w-8 h-8 flex flex-col justify-center items-center gap-[5px]"
             aria-label="Menú"
           >
             <span
-              className={`block h-0.5 w-6 transition-all duration-300 ${
+              className={`block h-px w-6 transition-all duration-300 ${
                 menuOpen
-                  ? "rotate-45 translate-y-2 bg-esenza-green-dark"
+                  ? "rotate-45 translate-y-[7px] bg-esenza-text"
                   : scrolled
-                  ? "bg-esenza-green-dark"
+                  ? "bg-esenza-text"
                   : "bg-white"
               }`}
             />
             <span
-              className={`block h-0.5 w-6 transition-all duration-300 ${
+              className={`block h-px w-6 transition-all duration-300 ${
                 menuOpen
                   ? "opacity-0"
                   : scrolled
-                  ? "bg-esenza-green-dark"
+                  ? "bg-esenza-text"
                   : "bg-white"
               }`}
             />
             <span
-              className={`block h-0.5 w-6 transition-all duration-300 ${
+              className={`block h-px w-6 transition-all duration-300 ${
                 menuOpen
-                  ? "-rotate-45 -translate-y-2 bg-esenza-green-dark"
+                  ? "-rotate-45 -translate-y-[7px] bg-esenza-text"
                   : scrolled
-                  ? "bg-esenza-green-dark"
+                  ? "bg-esenza-text"
                   : "bg-white"
               }`}
             />
@@ -162,46 +120,42 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu — full screen overlay */}
       <div
-        className={`lg:hidden fixed inset-0 bg-esenza-cream/98 backdrop-blur-lg transition-all duration-500 ${
+        className={`lg:hidden fixed inset-0 bg-esenza-cream transition-all duration-500 ${
           menuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
         }`}
       >
-        <div className="flex flex-col items-center justify-center h-full gap-6">
+        <div className="flex flex-col items-center justify-center h-full gap-8">
+          {/* Logo in menu */}
+          <span
+            className="font-heading text-3xl text-esenza-text mb-4"
+            style={{ fontFamily: "var(--font-cormorant, 'Cormorant Garamond'), Georgia, serif" }}
+          >
+            Esenza
+          </span>
+
           {navLinks.map((link) => (
-            <div key={link.href} className="flex flex-col items-center">
-              <a
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-2xl font-heading font-light tracking-widest uppercase text-esenza-green-dark hover:text-esenza-gold transition-colors"
-              >
-                {link.label}
-              </a>
-              {link.children && (
-                <div className="mt-2 flex gap-4">
-                  {link.children.map((child) => (
-                    <a
-                      key={child.href}
-                      href={child.href}
-                      onClick={() => setMenuOpen(false)}
-                      className="text-sm tracking-wide uppercase text-esenza-text-light hover:text-esenza-gold transition-colors"
-                    >
-                      {child.label}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="text-[13px] tracking-[0.2em] uppercase text-esenza-text-mid hover:text-esenza-text transition-colors"
+              style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
+            >
+              {link.label}
+            </a>
           ))}
+
           <a
             href="https://wa.me/573001234567?text=Hola!%20Quiero%20reservar%20en%20Esenza"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
-            className="mt-4 rounded-full bg-esenza-green px-8 py-3 text-lg font-semibold tracking-wider uppercase text-white hover:bg-esenza-green-dark transition-colors"
+            className="mt-6 border border-esenza-text text-esenza-text text-[12px] tracking-[0.2em] uppercase px-8 py-3 hover:bg-esenza-text hover:text-esenza-cream transition-all duration-300"
+            style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
           >
             Reservar
           </a>

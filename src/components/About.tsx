@@ -8,10 +8,8 @@ export default function About() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.2 }
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
+      { threshold: 0.15 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -21,78 +19,120 @@ export default function About() {
     <section
       id="nosotros"
       ref={sectionRef}
-      className="bg-esenza-cream py-24 md:py-32"
+      className="bg-esenza-cream py-28 md:py-40"
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Image */}
-          <div
-            className={`relative transition-all duration-1000 ${
-              isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 -translate-x-10"
-            }`}
-          >
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-              <img
-                src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1780&auto=format&fit=crop"
-                alt="Esenza - Vista de la naturaleza"
-                className="h-[500px] w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-esenza-green-dark/30 to-transparent" />
-            </div>
-            {/* Decorative element */}
-            <div className="absolute -bottom-6 -right-6 h-48 w-48 rounded-2xl border-2 border-esenza-gold/30 -z-10" />
-          </div>
+      <div className="mx-auto max-w-7xl px-6 lg:px-10">
 
-          {/* Text Content */}
+        {/* Layout: texto izquierda, imagen derecha */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+          {/* Texto */}
           <div
-            className={`transition-all duration-1000 delay-300 ${
-              isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-10"
+            className={`transition-all duration-1000 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
             }`}
           >
-            <span className="font-script text-3xl text-esenza-gold">
-              Sobre nosotros
-            </span>
-            <h2 className="mt-4 font-heading text-4xl md:text-5xl font-light text-esenza-green-dark leading-tight">
-              Un refugio donde la naturaleza
+            {/* Eyebrow */}
+            <p
+              className="text-[11px] tracking-[0.3em] uppercase text-esenza-text-light"
+              style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
+            >
+              Nosotros
+            </p>
+
+            {/* Frase poderosa — Cormorant grande */}
+            <h2
+              className="mt-5 text-5xl md:text-6xl lg:text-[4rem] font-light leading-[1.1] tracking-tight text-esenza-text"
+              style={{ fontFamily: "var(--font-cormorant, 'Cormorant Garamond'), Georgia, serif" }}
+            >
+              Un refugio donde
               <br />
-              <span className="font-semibold">sana el alma</span>
+              la naturaleza
+              <br />
+              <em className="font-normal not-italic" style={{ color: "var(--color-esenza-green)" }}>sana el alma</em>
             </h2>
 
-            <div className="mt-6 h-px w-16 bg-esenza-gold" />
+            {/* Línea dorada */}
+            <div className="mt-8 h-px w-12 bg-esenza-gold opacity-60" />
 
-            <p className="mt-8 text-lg leading-relaxed text-esenza-text-light">
-              <strong className="text-esenza-green-dark">Esenza</strong> es un
-              espacio de bienestar inmerso en la naturaleza, diseñado para
-              reconectarte con lo esencial. Ubicada en las montañas cercanas a
-              Bogotá, nuestra finca ofrece una experiencia única de descanso,
-              salud y vitalidad.
+            {/* Párrafos — DM Sans */}
+            <p
+              className="mt-8 text-base leading-[1.85] text-esenza-text-light max-w-md"
+              style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
+            >
+              Esenza es un espacio de bienestar inmerso en la naturaleza cálida de
+              Cundinamarca. Rodeada de montañas y aire puro, nuestra finca cerca de
+              Anapoima invita a pausar, respirar y reconectarte con lo que importa.
             </p>
 
-            <p className="mt-4 text-lg leading-relaxed text-esenza-text-light">
-              Rodeada de paisajes verdes, aire puro y la tranquilidad del campo
-              colombiano, Esenza es el lugar perfecto para escapar del ritmo
-              urbano y encontrar tu equilibrio interior.
+            <p
+              className="mt-4 text-base leading-[1.85] text-esenza-text-light max-w-md"
+              style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
+            >
+              Para familias que buscan descansar juntas, para personas que necesitan
+              un retiro de bienestar — Esenza es el lugar donde la calma llega sola.
             </p>
 
-            <div className="mt-10 grid grid-cols-3 gap-6">
+            {/* Stats minimalistas */}
+            <div className="mt-12 flex gap-10">
               {[
-                { number: "100%", label: "Natural" },
-                { number: "360°", label: "Montañas" },
-                { number: "∞", label: "Paz" },
+                { value: "~2h", label: "desde Bogotá" },
+                { value: "365", label: "días de naturaleza" },
+                { value: "∞", label: "silencio" },
               ].map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="font-heading text-3xl font-bold text-esenza-green">
-                    {stat.number}
+                <div key={stat.label}>
+                  <div
+                    className="text-3xl font-light text-esenza-text"
+                    style={{ fontFamily: "var(--font-cormorant, 'Cormorant Garamond'), Georgia, serif" }}
+                  >
+                    {stat.value}
                   </div>
-                  <div className="mt-1 text-sm tracking-wider uppercase text-esenza-text-light">
+                  <div
+                    className="mt-1 text-[11px] tracking-[0.2em] uppercase text-esenza-text-light"
+                    style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
+                  >
                     {stat.label}
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Imagen */}
+          <div
+            className={`transition-all duration-1000 delay-300 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+            }`}
+          >
+            {/* Imagen placeholder — gradiente orgánico cálido */}
+            <div
+              className="relative w-full aspect-[3/4] overflow-hidden"
+              style={{ borderRadius: "2px" }}
+            >
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #4A6020 0%, #6B8C23 35%, #8A9E6B 60%, #A99348 100%)",
+                }}
+              />
+              {/* Textura sutil */}
+              <div
+                className="absolute inset-0 opacity-20"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(ellipse at 30% 70%, #F5F1EB 0%, transparent 60%)",
+                }}
+              />
+              {/* Texto placeholder elegante */}
+              <div className="absolute inset-0 flex items-end p-8">
+                <p
+                  className="text-sm tracking-[0.2em] uppercase text-white/50"
+                  style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
+                >
+                  Foto de la finca
+                </p>
+              </div>
             </div>
           </div>
         </div>

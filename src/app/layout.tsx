@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Great_Vibes } from "next/font/google";
-import "./globals.css";
+import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -9,10 +8,10 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-const greatVibes = Great_Vibes({
-  variable: "--font-great-vibes",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["300", "400", "500"],
   display: "swap",
 });
 
@@ -24,8 +23,11 @@ export const metadata: Metadata = {
     "esenza",
     "wellness",
     "naturaleza",
-    "descanso",
+    "retiros",
     "finca",
+    "La Mesa",
+    "Cundinamarca",
+    "Anapoima",
     "Colombia",
     "hospedaje rural",
     "bienestar",
@@ -47,7 +49,8 @@ export default function RootLayout({
   return (
     <html lang="es" className="scroll-smooth">
       <body
-        className={`${cormorant.variable} ${greatVibes.variable} font-body antialiased`}
+        className={`${cormorant.variable} ${dmSans.variable} antialiased`}
+        style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
       >
         {children}
       </body>
