@@ -28,7 +28,7 @@ export default function Hero() {
           href="#paquetes"
           className="inline-block border border-white/30 backdrop-blur-md text-white px-10 py-4 rounded-full font-label text-sm tracking-widest hover:bg-white hover:text-primary transition-all duration-500 uppercase opacity-0 animate-fade-in-up animation-delay-600"
         >
-          Descubrir
+          Descubre tu experiencia
         </a>
       </div>
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-0 animate-fade-in animation-delay-600">

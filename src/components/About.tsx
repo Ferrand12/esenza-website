@@ -8,8 +8,10 @@ export default function About() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
-      { threshold: 0.15 }
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true);
+      },
+      { threshold: 0.2 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -46,13 +48,12 @@ export default function About() {
             </div>
           </div>
 
-        {/* Layout: texto izquierda, imagen derecha */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-
-          {/* Texto */}
+          {/* Text Content */}
           <div
-            className={`transition-all duration-1000 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+            className={`transition-all duration-1000 delay-300 ${
+              isVisible
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 translate-x-10"
             }`}
           >
             <span className="font-script text-4xl text-secondary">
@@ -61,9 +62,7 @@ export default function About() {
             <h2 className="mt-4 font-editorial text-4xl md:text-5xl text-primary leading-tight">
               Un refugio donde la naturaleza
               <br />
-              la naturaleza
-              <br />
-              <em className="font-normal not-italic" style={{ color: "var(--color-esenza-green)" }}>sana el alma</em>
+              <span className="font-semibold">sana el alma</span>
             </h2>
 
             <div className="mt-6 w-24 h-px bg-secondary-container" />
@@ -96,44 +95,6 @@ export default function About() {
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
-
-          {/* Imagen */}
-          <div
-            className={`transition-all duration-1000 delay-300 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-            }`}
-          >
-            {/* Imagen placeholder — gradiente orgánico cálido */}
-            <div
-              className="relative w-full aspect-[3/4] overflow-hidden"
-              style={{ borderRadius: "2px" }}
-            >
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #4A6020 0%, #6B8C23 35%, #8A9E6B 60%, #A99348 100%)",
-                }}
-              />
-              {/* Textura sutil */}
-              <div
-                className="absolute inset-0 opacity-20"
-                style={{
-                  backgroundImage:
-                    "radial-gradient(ellipse at 30% 70%, #F5F1EB 0%, transparent 60%)",
-                }}
-              />
-              {/* Texto placeholder elegante */}
-              <div className="absolute inset-0 flex items-end p-8">
-                <p
-                  className="text-sm tracking-[0.2em] uppercase text-white/50"
-                  style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
-                >
-                  Foto de la finca
-                </p>
-              </div>
             </div>
           </div>
         </div>

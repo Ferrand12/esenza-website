@@ -4,10 +4,16 @@ import { useState, useEffect, useRef } from "react";
 
 const navLinks = [
   { href: "#nosotros", label: "Nosotros" },
-  { href: "#experiencias", label: "Experiencias" },
-  { href: "#retiros", label: "Retiros" },
-  { href: "#hospedaje", label: "Hospedaje" },
-  { href: "#ubicacion", label: "Cómo llegar" },
+  {
+    href: "#experiencias",
+    label: "Experiencias",
+    children: [
+      { href: "#retiros", label: "Retiros" },
+      { href: "#eventos", label: "Eventos" },
+      { href: "#hospedaje", label: "Hospedaje" },
+    ],
+  },
+  { href: "#paquetes", label: "Paquetes" },
   { href: "#galeria", label: "Galería" },
   { href: "#contacto", label: "Contacto" },
 ];
@@ -15,14 +21,15 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -114,14 +121,14 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile Hamburger */}
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden z-50 w-8 h-8 flex flex-col justify-center items-center gap-[5px]"
+            className="lg:hidden relative z-50 w-8 h-8 flex flex-col justify-center items-center gap-1.5"
             aria-label="Menú"
           >
             <span
-              className={`block h-px w-6 transition-all duration-300 ${
+              className={`block h-0.5 w-6 transition-all duration-300 ${
                 menuOpen
                   ? "rotate-45 translate-y-2 bg-on-surface"
                   : scrolled
@@ -130,7 +137,7 @@ export default function Navbar() {
               }`}
             />
             <span
-              className={`block h-px w-6 transition-all duration-300 ${
+              className={`block h-0.5 w-6 transition-all duration-300 ${
                 menuOpen
                   ? "opacity-0"
                   : scrolled
@@ -139,7 +146,7 @@ export default function Navbar() {
               }`}
             />
             <span
-              className={`block h-px w-6 transition-all duration-300 ${
+              className={`block h-0.5 w-6 transition-all duration-300 ${
                 menuOpen
                   ? "-rotate-45 -translate-y-2 bg-on-surface"
                   : scrolled
@@ -151,7 +158,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu — full screen overlay */}
+      {/* Mobile Menu */}
       <div
         className={`lg:hidden fixed inset-0 bg-surface/98 backdrop-blur-lg transition-all duration-500 ${
           menuOpen
@@ -159,15 +166,7 @@ export default function Navbar() {
             : "opacity-0 pointer-events-none"
         }`}
       >
-        <div className="flex flex-col items-center justify-center h-full gap-8">
-          {/* Logo in menu */}
-          <span
-            className="font-heading text-3xl text-esenza-text mb-4"
-            style={{ fontFamily: "var(--font-cormorant, 'Cormorant Garamond'), Georgia, serif" }}
-          >
-            Esenza
-          </span>
-
+        <div className="flex flex-col items-center justify-center h-full gap-6">
           {navLinks.map((link) => (
             <div key={link.href} className="flex flex-col items-center">
               <a
@@ -193,7 +192,6 @@ export default function Navbar() {
               )}
             </div>
           ))}
-
           <a
             href="https://wa.me/573001234567?text=Hola!%20Quiero%20reservar%20en%20Esenza"
             target="_blank"

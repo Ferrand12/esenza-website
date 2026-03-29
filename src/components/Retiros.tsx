@@ -4,34 +4,28 @@ import { useEffect, useRef, useState } from "react";
 
 const retiros = [
   {
-    title: "Retiro de Yoga & Meditacion",
+    title: "Retiro de Yoga & Meditación",
     description:
-      "3 dias de practica profunda con instructores certificados. Sesiones al amanecer, meditacion guiada y alimentacion consciente.",
-    duration: "3 dias",
+      "3 días de práctica profunda con instructores certificados. Sesiones al amanecer, meditación guiada y alimentación consciente.",
+    duration: "3 días",
   },
   {
-    title: "Retiro de Desintoxicacion Digital",
+    title: "Retiro de Desintoxicación Digital",
     description:
-      "Desconectate del ruido. Sin pantallas, sin notificaciones. Solo naturaleza, silencio y reconexion con tu esencia.",
-    duration: "2 dias",
+      "Desconéctate del ruido. Sin pantallas, sin notificaciones. Solo naturaleza, silencio y reconexión con tu esencia.",
+    duration: "2 días",
   },
   {
-    number: "03",
     title: "Retiro Corporativo",
     description:
-      "Fortalece a tu equipo en un entorno inspirador. Dinamicas de grupo, estrategia al aire libre y espacios para la creatividad.",
+      "Fortalece a tu equipo en un entorno inspirador. Dinámicas de grupo, estrategia al aire libre y espacios para la creatividad.",
     duration: "Personalizado",
-    description:
-      "Fortalece tu equipo en un entorno que inspira. Dinámicas al aire libre, estrategia y espacios para la creatividad colectiva.",
-    tags: ["Equipos", "Liderazgo", "Creatividad"],
   },
   {
-    number: "04",
     title: "Escapada Familiar",
-    duration: "Fines de semana",
     description:
       "La finca completa para tu familia. Descanso, naturaleza, cocina campesina y recuerdos que duran toda la vida.",
-    tags: ["Familias", "Descanso", "Experiencias"],
+    duration: "Fines de semana",
   },
 ];
 
@@ -41,8 +35,10 @@ export default function Retiros() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
-      { threshold: 0.1 }
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true);
+      },
+      { threshold: 0.15 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -74,8 +70,8 @@ export default function Retiros() {
               <span className="font-semibold text-secondary-container">transforman</span>
             </h2>
             <p className="mt-6 text-base leading-relaxed text-white/60">
-              Experiencias inmersivas disenadas para pausar, respirar y volver a
-              tu centro. Cada retiro es una invitacion a recordar quien eres.
+              Experiencias inmersivas diseñadas para pausar, respirar y volver a
+              tu centro. Cada retiro es una invitación a recordar quién eres.
             </p>
           </div>
 
@@ -105,21 +101,8 @@ export default function Retiros() {
                   </span>
                 </div>
               </div>
-
-              {/* CTA */}
-              <div className="lg:col-span-2 flex lg:justify-end items-start">
-                <a
-                  href="https://wa.me/573001234567?text=Hola!%20Quiero%20información%20sobre%20retiros%20en%20Esenza"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[11px] tracking-[0.2em] uppercase text-white/30 border border-white/15 px-4 py-2 hover:text-white hover:border-white/40 transition-all duration-300"
-                  style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
-                >
-                  Consultar
-                </a>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

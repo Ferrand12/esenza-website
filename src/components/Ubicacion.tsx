@@ -3,47 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 
 const distancias = [
-  {
-    lugar: "Bogotá",
-    tiempo: "~2 horas",
-    km: "85 km",
-    icono: (
-      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
-        <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-      </svg>
-    ),
-  },
-  {
-    lugar: "Anapoima",
-    tiempo: "~15 min",
-    km: "12 km",
-    icono: (
-      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
-        <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-        <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-      </svg>
-    ),
-  },
-  {
-    lugar: "Girardot",
-    tiempo: "~45 min",
-    km: "40 km",
-    icono: (
-      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
-        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1" />
-      </svg>
-    ),
-  },
-  {
-    lugar: "La Mesa (pueblo)",
-    tiempo: "~10 min",
-    km: "8 km",
-    icono: (
-      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
-        <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-  },
+  { lugar: "Bogotá", tiempo: "~2 horas", km: "85 km", icon: "location_city" },
+  { lugar: "Anapoima", tiempo: "~15 min", km: "12 km", icon: "pin_drop" },
+  { lugar: "Girardot", tiempo: "~45 min", km: "40 km", icon: "home" },
+  { lugar: "La Mesa (pueblo)", tiempo: "~10 min", km: "8 km", icon: "public" },
 ];
 
 const actividades = [
@@ -61,7 +24,9 @@ export default function Ubicacion() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true);
+      },
       { threshold: 0.08 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -72,116 +37,80 @@ export default function Ubicacion() {
     <section
       id="ubicacion"
       ref={sectionRef}
-      className="bg-esenza-cream-dark py-28 md:py-40"
+      className="bg-surface-container-low py-28 md:py-40"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-
         {/* Header */}
         <div
           className={`transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <p
-            className="text-[11px] tracking-[0.3em] uppercase text-esenza-text-light"
-            style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
-          >
+          <p className="font-label text-[11px] tracking-[0.3em] uppercase text-on-surface-variant">
             Cómo llegar
           </p>
-          <h2
-            className="mt-4 text-5xl md:text-6xl font-light leading-[1.1] text-esenza-text"
-            style={{ fontFamily: "var(--font-cormorant, 'Cormorant Garamond'), Georgia, serif" }}
-          >
+          <h2 className="mt-4 font-editorial text-5xl md:text-6xl font-light leading-[1.1] text-on-surface">
             La Mesa,{" "}
-            <em className="font-normal not-italic" style={{ color: "var(--color-esenza-green)" }}>
+            <em className="font-normal not-italic text-primary">
               Cundinamarca
             </em>
           </h2>
-          <p
-            className="mt-5 max-w-lg text-base leading-[1.8] text-esenza-text-light"
-            style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
-          >
+          <p className="mt-5 max-w-lg text-base leading-[1.8] text-on-surface-variant">
             Cerca de Anapoima, en la región cálida de Cundinamarca. Un paisaje
             diferente a solo dos horas de Bogotá.
           </p>
         </div>
 
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-
           {/* Columna izquierda — distancias + actividades */}
           <div
             className={`transition-all duration-1000 delay-200 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            {/* Distancias */}
-            <p
-              className="text-[10px] tracking-[0.3em] uppercase text-esenza-text-light mb-6"
-              style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
-            >
+            <p className="font-label text-[10px] tracking-[0.3em] uppercase text-on-surface-variant mb-6">
               Distancias
             </p>
-            <div className="space-y-0 divide-y divide-esenza-cream-deeper">
+            <div className="space-y-0 divide-y divide-outline-variant">
               {distancias.map((d) => (
                 <div
                   key={d.lugar}
                   className="flex items-center justify-between py-4"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="text-esenza-text-light">{d.icono}</div>
+                    <span className="material-symbols-outlined text-on-surface-variant text-xl">
+                      {d.icon}
+                    </span>
                     <div>
-                      <p
-                        className="text-base font-light text-esenza-text"
-                        style={{ fontFamily: "var(--font-cormorant, 'Cormorant Garamond'), Georgia, serif" }}
-                      >
+                      <p className="font-editorial text-base font-light text-on-surface">
                         {d.lugar}
                       </p>
-                      <p
-                        className="text-[11px] text-esenza-text-light mt-0.5"
-                        style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
-                      >
+                      <p className="font-label text-[11px] text-on-surface-variant mt-0.5">
                         {d.km}
                       </p>
                     </div>
                   </div>
-                  <span
-                    className="text-sm font-light text-esenza-text-mid"
-                    style={{ fontFamily: "var(--font-cormorant, 'Cormorant Garamond'), Georgia, serif" }}
-                  >
+                  <span className="font-editorial text-sm font-light text-on-surface-variant">
                     {d.tiempo}
                   </span>
                 </div>
               ))}
             </div>
 
-            {/* Separador */}
-            <div className="mt-10 h-px bg-esenza-cream-deeper" />
+            <div className="mt-10 h-px bg-outline-variant" />
 
-            {/* Actividades cercanas */}
-            <p
-              className="text-[10px] tracking-[0.3em] uppercase text-esenza-text-light mt-10 mb-6"
-              style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
-            >
+            <p className="font-label text-[10px] tracking-[0.3em] uppercase text-on-surface-variant mt-10 mb-6">
               Qué hay cerca
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {actividades.map((act) => (
                 <div key={act.label} className="flex items-start gap-3">
-                  {/* Punto decorativo */}
-                  <div
-                    className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-esenza-gold opacity-70"
-                  />
+                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary opacity-70" />
                   <div>
-                    <p
-                      className="text-sm font-light text-esenza-text"
-                      style={{ fontFamily: "var(--font-cormorant, 'Cormorant Garamond'), Georgia, serif" }}
-                    >
+                    <p className="font-editorial text-sm font-light text-on-surface">
                       {act.label}
                     </p>
-                    <p
-                      className="text-[11px] leading-relaxed text-esenza-text-light"
-                      style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
-                    >
+                    <p className="text-[11px] leading-relaxed text-on-surface-variant">
                       {act.detalle}
                     </p>
                   </div>
@@ -196,7 +125,7 @@ export default function Ubicacion() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="overflow-hidden h-[420px] lg:h-full min-h-[420px]" style={{ borderRadius: "1px" }}>
+            <div className="overflow-hidden rounded-2xl h-[420px] lg:h-full min-h-[420px]">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31804.55!2d-74.4694!3d4.5930!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f14dc23c96f2f%3A0x8f3e5a1b7e5b0e0!2sLa%20Mesa%2C%20Cundinamarca%2C%20Colombia!5e0!3m2!1ses!2sco!4v1710000000000!5m2!1ses!2sco"
                 width="100%"
@@ -208,12 +137,7 @@ export default function Ubicacion() {
                 title="Esenza — La Mesa, Cundinamarca"
               />
             </div>
-
-            {/* Nota bajo el mapa */}
-            <p
-              className="mt-4 text-[11px] leading-relaxed text-esenza-text-light"
-              style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
-            >
+            <p className="mt-4 text-[11px] leading-relaxed text-on-surface-variant">
               La ubicación exacta se comparte al confirmar la reserva por privacidad.
               Coordinaremos el acceso directamente por WhatsApp.
             </p>

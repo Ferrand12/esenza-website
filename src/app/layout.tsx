@@ -9,10 +9,10 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const greatVibes = Great_Vibes({
+  variable: "--font-great-vibes",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["400"],
   display: "swap",
 });
 
@@ -38,11 +38,8 @@ export const metadata: Metadata = {
     "esenza",
     "wellness",
     "naturaleza",
-    "retiros",
+    "descanso",
     "finca",
-    "La Mesa",
-    "Cundinamarca",
-    "Anapoima",
     "Colombia",
     "hospedaje rural",
     "bienestar",
