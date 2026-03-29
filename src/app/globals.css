@@ -52,16 +52,18 @@
 
   /* ── Legacy aliases ── */
   --color-esenza-green: #6B8C23;
-  --color-esenza-green-dark: #014023;
-  --color-esenza-green-olive: #7C8C03;
+  --color-esenza-green-dark: #3D5216;
+  --color-esenza-green-sage: #8A9E6B;
   --color-esenza-gold: #A99348;
-  --color-esenza-gold-dark: #A68B03;
+  --color-esenza-gold-light: #C4AD6A;
   --color-esenza-orange: #CC6518;
   --color-esenza-cream: #F5F1EB;
-  --color-esenza-cream-dark: #EDE8DF;
-  --color-esenza-white: #FAFAF8;
-  --color-esenza-text: #2D2D2D;
-  --color-esenza-text-light: #5A5A5A;
+  --color-esenza-cream-dark: #EAE4D8;
+  --color-esenza-cream-deeper: #DDD5C5;
+  --color-esenza-white: #FAFAF7;
+  --color-esenza-text: #1C1C1A;
+  --color-esenza-text-mid: #4A4A42;
+  --color-esenza-text-light: #6B6B5F;
 
   /* ── Typography ── */
   --font-headline: "Noto Serif", "Georgia", serif;
@@ -72,6 +74,7 @@
   --font-script: "Great Vibes", cursive;
 }
 
+/* ── Base ── */
 html {
   scroll-behavior: smooth;
 }
@@ -80,6 +83,8 @@ body {
   background: var(--color-background);
   color: var(--color-on-background);
   font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
@@ -110,7 +115,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
   background: var(--color-surface-container-low);
@@ -136,7 +141,7 @@ body {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(32px);
   }
   to {
     opacity: 1;
@@ -146,38 +151,37 @@ body {
 
 @keyframes fadeIn {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes slowPan {
+  0%   { transform: scale(1.08) translateX(0px); }
+  50%  { transform: scale(1.13) translateX(-14px); }
+  100% { transform: scale(1.08) translateX(0px); }
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out forwards;
+  animation: fadeInUp 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .animate-fade-in {
-  animation: fadeIn 1s ease-out forwards;
+  animation: fadeIn 1.2s ease-out forwards;
 }
 
-.animate-slide-down {
-  animation: slideDown 0.6s ease-out forwards;
+.animate-slow-pan {
+  animation: slowPan 20s ease-in-out infinite;
 }
 
-.animation-delay-200 {
-  animation-delay: 0.2s;
+/* Delays */
+.animation-delay-200 { animation-delay: 0.2s; }
+.animation-delay-400 { animation-delay: 0.4s; }
+.animation-delay-600 { animation-delay: 0.6s; }
+.animation-delay-800 { animation-delay: 0.8s; }
+
+/* ── Utilidades tipográficas ── */
+.font-heading {
+  font-family: var(--font-heading);
 }
-.animation-delay-400 {
-  animation-delay: 0.4s;
-}
-.animation-delay-600 {
-  animation-delay: 0.6s;
+.font-body {
+  font-family: var(--font-body);
 }

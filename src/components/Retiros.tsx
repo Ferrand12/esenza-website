@@ -16,10 +16,22 @@ const retiros = [
     duration: "2 dias",
   },
   {
+    number: "03",
     title: "Retiro Corporativo",
     description:
       "Fortalece a tu equipo en un entorno inspirador. Dinamicas de grupo, estrategia al aire libre y espacios para la creatividad.",
     duration: "Personalizado",
+    description:
+      "Fortalece tu equipo en un entorno que inspira. Dinámicas al aire libre, estrategia y espacios para la creatividad colectiva.",
+    tags: ["Equipos", "Liderazgo", "Creatividad"],
+  },
+  {
+    number: "04",
+    title: "Escapada Familiar",
+    duration: "Fines de semana",
+    description:
+      "La finca completa para tu familia. Descanso, naturaleza, cocina campesina y recuerdos que duran toda la vida.",
+    tags: ["Familias", "Descanso", "Experiencias"],
   },
 ];
 
@@ -29,10 +41,8 @@ export default function Retiros() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.15 }
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
+      { threshold: 0.1 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -95,8 +105,21 @@ export default function Retiros() {
                   </span>
                 </div>
               </div>
-            ))}
-          </div>
+
+              {/* CTA */}
+              <div className="lg:col-span-2 flex lg:justify-end items-start">
+                <a
+                  href="https://wa.me/573001234567?text=Hola!%20Quiero%20información%20sobre%20retiros%20en%20Esenza"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[11px] tracking-[0.2em] uppercase text-white/30 border border-white/15 px-4 py-2 hover:text-white hover:border-white/40 transition-all duration-300"
+                  style={{ fontFamily: "var(--font-dm-sans, DM Sans), system-ui, sans-serif" }}
+                >
+                  Consultar
+                </a>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

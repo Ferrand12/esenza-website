@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
+// Placeholders con gradientes de la paleta — reemplazar con fotos reales
 const images = [
   {
     src: "https://images.unsplash.com/photo-1505916349660-8d91a4e42890?q=80&w=800&auto=format&fit=crop",
@@ -35,10 +36,8 @@ export default function Gallery() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.1 }
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
+      { threshold: 0.08 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
