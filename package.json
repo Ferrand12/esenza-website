@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "ruflo:doctor": "npx ruflo@latest doctor",
+    "ruflo:mcp": "npx ruflo@latest mcp start",
+    "ruflo:help": "npx ruflo@latest --help",
+    "ruflo:agents": "npx ruflo@latest agents list"
   },
   "dependencies": {
     "next": "16.1.6",

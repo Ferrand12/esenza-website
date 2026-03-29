@@ -1,51 +1,38 @@
 "use client";
 
-import { SimpleTree } from "@/components/ui/simple-growth-tree";
-
 export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative h-screen w-full overflow-hidden"
+      className="relative h-screen flex items-center justify-center overflow-hidden bg-primary-container"
     >
-      {/* Tree animation background */}
-      <SimpleTree
-        className="absolute inset-0 w-full h-full"
-        bgColor="#014023"
-        treeHueMin={75}
-        treeHueMax={110}
-        opacity={0.85}
-        scale={1.6}
-      />
-
-      {/* Overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40" />
-
-      {/* Content — 4 elements only: name, tagline, slogan, CTA */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center text-white">
-        <h1 className="font-script text-7xl md:text-8xl lg:text-9xl opacity-0 animate-fade-in-up">
+      <div className="absolute inset-0 z-0">
+        <img
+          alt="Bosque nuboso en los Andes colombianos"
+          className="w-full h-full object-cover opacity-60 scale-105"
+          src="https://images.unsplash.com/photo-1505916349660-8d91a4e42890?q=80&w=1920&auto=format&fit=crop"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-transparent to-primary/60" />
+      </div>
+      <div className="relative z-10 text-center px-6 max-w-5xl">
+        <h1 className="font-script text-7xl md:text-9xl text-white mb-4 drop-shadow-2xl opacity-0 animate-fade-in-up">
           Esenza
         </h1>
-
-        <p className="mt-3 text-sm md:text-base tracking-[0.35em] uppercase font-light opacity-0 animate-fade-in-up animation-delay-200">
+        <p className="font-body text-xs md:text-sm tracking-[0.5em] text-white/90 uppercase mb-8 font-light opacity-0 animate-fade-in-up animation-delay-200">
           Natural Wellness Stay
         </p>
-
-        <p className="mt-8 max-w-md font-heading text-xl md:text-2xl font-light leading-relaxed text-white/90 opacity-0 animate-fade-in-up animation-delay-400">
+        <h2 className="font-editorial text-3xl md:text-5xl text-white italic font-light mb-12 opacity-0 animate-fade-in-up animation-delay-400">
           Naturaleza, reconexión y descanso
-        </p>
-
+        </h2>
         <a
           href="#paquetes"
-          className="mt-10 rounded-full border border-white/40 px-10 py-3.5 text-[13px] font-medium tracking-widest uppercase text-white transition-all duration-500 hover:bg-white/10 hover:border-white opacity-0 animate-fade-in-up animation-delay-600"
+          className="inline-block border border-white/30 backdrop-blur-md text-white px-10 py-4 rounded-full font-label text-sm tracking-widest hover:bg-white hover:text-primary transition-all duration-500 uppercase opacity-0 animate-fade-in-up animation-delay-600"
         >
           Descubre tu experiencia
         </a>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-600">
-          <div className="h-10 w-[1px] bg-gradient-to-b from-transparent to-white/40" />
-        </div>
+      </div>
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-0 animate-fade-in animation-delay-600">
+        <span className="material-symbols-outlined text-white text-3xl font-extralight">expand_more</span>
       </div>
     </section>
   );

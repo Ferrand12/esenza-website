@@ -41,15 +41,15 @@ export default function Navbar() {
   }, []);
 
   const linkClass = (isScrolled: boolean) =>
-    `text-[13px] font-medium tracking-wide uppercase transition-colors duration-300 hover:text-esenza-gold ${
-      isScrolled ? "text-esenza-green-dark" : "text-white"
+    `font-label text-sm tracking-wide uppercase transition-colors duration-300 hover:text-secondary ${
+      isScrolled ? "text-on-surface-variant" : "text-white"
     }`;
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-esenza-cream/95 backdrop-blur-md shadow-lg"
+          ? "glass-nav shadow-lg"
           : "bg-transparent"
       }`}
     >
@@ -59,7 +59,7 @@ export default function Navbar() {
           <a href="#inicio" className="flex items-center">
             <span
               className={`font-script text-3xl transition-colors duration-500 ${
-                scrolled ? "text-esenza-green" : "text-white"
+                scrolled ? "text-primary" : "text-white"
               }`}
             >
               Esenza
@@ -76,17 +76,13 @@ export default function Navbar() {
                     className={`${linkClass(scrolled)} flex items-center gap-1`}
                   >
                     {link.label}
-                    <svg
-                      className={`h-3.5 w-3.5 transition-transform duration-200 ${
+                    <span
+                      className={`material-symbols-outlined text-sm transition-transform duration-200 ${
                         dropdownOpen ? "rotate-180" : ""
                       }`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="2"
                     >
-                      <path d="M19 9l-7 7-7-7" />
-                    </svg>
+                      expand_more
+                    </span>
                   </button>
                   <div
                     className={`absolute top-full left-1/2 -translate-x-1/2 mt-3 w-44 rounded-xl overflow-hidden shadow-xl transition-all duration-300 ${
@@ -95,13 +91,13 @@ export default function Navbar() {
                         : "opacity-0 -translate-y-2 pointer-events-none"
                     }`}
                   >
-                    <div className="bg-white/95 backdrop-blur-md py-2">
+                    <div className="bg-surface-container border border-outline-variant/10 py-2">
                       {link.children.map((child) => (
                         <a
                           key={child.href}
                           href={child.href}
                           onClick={() => setDropdownOpen(false)}
-                          className="block px-5 py-2.5 text-[13px] font-medium tracking-wide uppercase text-esenza-green-dark transition-colors hover:bg-esenza-cream hover:text-esenza-gold"
+                          className="block px-5 py-2.5 font-label text-sm tracking-wide uppercase text-on-surface transition-colors hover:bg-white rounded-md"
                         >
                           {child.label}
                         </a>
@@ -119,7 +115,7 @@ export default function Navbar() {
               href="https://wa.me/573001234567?text=Hola!%20Quiero%20reservar%20en%20Esenza"
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-2 rounded-full bg-esenza-green px-6 py-2 text-[13px] font-semibold tracking-wide uppercase text-white transition-all duration-300 hover:bg-esenza-green-dark hover:shadow-lg"
+              className="ml-2 rounded-full bg-primary-container text-on-primary-container px-6 py-2 font-label text-sm font-semibold tracking-wide uppercase shadow-lg transition-all duration-300 hover:bg-primary hover:text-on-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
             >
               Reservar
             </a>
@@ -134,9 +130,9 @@ export default function Navbar() {
             <span
               className={`block h-0.5 w-6 transition-all duration-300 ${
                 menuOpen
-                  ? "rotate-45 translate-y-2 bg-esenza-green-dark"
+                  ? "rotate-45 translate-y-2 bg-on-surface"
                   : scrolled
-                  ? "bg-esenza-green-dark"
+                  ? "bg-on-surface"
                   : "bg-white"
               }`}
             />
@@ -145,16 +141,16 @@ export default function Navbar() {
                 menuOpen
                   ? "opacity-0"
                   : scrolled
-                  ? "bg-esenza-green-dark"
+                  ? "bg-on-surface"
                   : "bg-white"
               }`}
             />
             <span
               className={`block h-0.5 w-6 transition-all duration-300 ${
                 menuOpen
-                  ? "-rotate-45 -translate-y-2 bg-esenza-green-dark"
+                  ? "-rotate-45 -translate-y-2 bg-on-surface"
                   : scrolled
-                  ? "bg-esenza-green-dark"
+                  ? "bg-on-surface"
                   : "bg-white"
               }`}
             />
@@ -164,7 +160,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed inset-0 bg-esenza-cream/98 backdrop-blur-lg transition-all duration-500 ${
+        className={`lg:hidden fixed inset-0 bg-surface/98 backdrop-blur-lg transition-all duration-500 ${
           menuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
@@ -176,7 +172,7 @@ export default function Navbar() {
               <a
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-2xl font-heading font-light tracking-widest uppercase text-esenza-green-dark hover:text-esenza-gold transition-colors"
+                className="text-2xl font-heading font-light tracking-widest uppercase text-on-surface hover:text-secondary transition-colors"
               >
                 {link.label}
               </a>
@@ -187,7 +183,7 @@ export default function Navbar() {
                       key={child.href}
                       href={child.href}
                       onClick={() => setMenuOpen(false)}
-                      className="text-sm tracking-wide uppercase text-esenza-text-light hover:text-esenza-gold transition-colors"
+                      className="font-label text-sm tracking-wide uppercase text-on-surface-variant hover:text-secondary transition-colors"
                     >
                       {child.label}
                     </a>
@@ -201,7 +197,7 @@ export default function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
-            className="mt-4 rounded-full bg-esenza-green px-8 py-3 text-lg font-semibold tracking-wider uppercase text-white hover:bg-esenza-green-dark transition-colors"
+            className="mt-4 rounded-full bg-primary-container text-on-primary-container px-8 py-3 text-lg font-semibold tracking-wider uppercase shadow-lg hover:bg-primary hover:text-on-primary transition-colors"
           >
             Reservar
           </a>

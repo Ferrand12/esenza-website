@@ -1,6 +1,56 @@
 @import "tailwindcss";
 
 @theme inline {
+  /* ── Material Design 3 Palette (Stitch) ── */
+  --color-primary: #002814;
+  --color-primary-container: #014023;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #74ac86;
+
+  --color-secondary: #6f5d16;
+  --color-secondary-container: #fbe18d;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #76631c;
+
+  --color-tertiary: #192600;
+  --color-tertiary-container: #2a3d00;
+
+  --color-surface: #fdf9f3;
+  --color-surface-bright: #fdf9f3;
+  --color-surface-dim: #ddd9d4;
+  --color-surface-container: #f1ede7;
+  --color-surface-container-low: #f7f3ed;
+  --color-surface-container-high: #ebe8e2;
+  --color-surface-container-highest: #e6e2dc;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-variant: #e6e2dc;
+
+  --color-on-surface: #1c1c18;
+  --color-on-surface-variant: #414942;
+  --color-on-background: #1c1c18;
+  --color-background: #fdf9f3;
+
+  --color-outline: #717971;
+  --color-outline-variant: #c0c9c0;
+
+  --color-inverse-surface: #31302d;
+  --color-inverse-on-surface: #f4f0ea;
+  --color-inverse-primary: #9ad4ab;
+
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+
+  --color-primary-fixed: #b5f0c6;
+  --color-primary-fixed-dim: #9ad4ab;
+  --color-secondary-fixed: #fbe18d;
+  --color-secondary-fixed-dim: #dec574;
+  --color-tertiary-fixed: #caf07b;
+  --color-tertiary-fixed-dim: #aed363;
+
+  --color-surface-tint: #326948;
+
+  /* ── Legacy aliases ── */
   --color-esenza-green: #6B8C23;
   --color-esenza-green-dark: #014023;
   --color-esenza-green-olive: #7C8C03;
@@ -13,8 +63,12 @@
   --color-esenza-text: #2D2D2D;
   --color-esenza-text-light: #5A5A5A;
 
+  /* ── Typography ── */
+  --font-headline: "Noto Serif", "Georgia", serif;
   --font-heading: "Cormorant Garamond", "Georgia", serif;
-  --font-body: "Cormorant Garamond", "Georgia", serif;
+  --font-editorial: "Cormorant Garamond", "Georgia", serif;
+  --font-body: "Plus Jakarta Sans", "DM Sans", system-ui, sans-serif;
+  --font-label: "Plus Jakarta Sans", "DM Sans", system-ui, sans-serif;
   --font-script: "Great Vibes", cursive;
 }
 
@@ -23,24 +77,62 @@ html {
 }
 
 body {
-  background: var(--color-esenza-white);
-  color: var(--color-esenza-text);
+  background: var(--color-background);
+  color: var(--color-on-background);
   font-family: var(--font-body);
 }
 
-/* Custom scrollbar */
+::selection {
+  background: var(--color-secondary-container);
+  color: var(--color-on-secondary-container);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 100;
+  padding: 8px 16px;
+  background: var(--color-primary-container);
+  color: white;
+  font-size: 14px;
+  border-radius: 0 0 4px 4px;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-esenza-cream);
+  background: var(--color-surface-container-low);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-esenza-gold);
+  background: var(--color-secondary-fixed-dim);
   border-radius: 4px;
 }
 
-/* Animations */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.glass-nav {
+  backdrop-filter: blur(12px);
+  background-color: rgba(253, 249, 243, 0.8);
+}
+
+.gold-glow:hover {
+  box-shadow: 0 0 20px rgba(169, 147, 72, 0.3);
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;

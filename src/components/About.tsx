@@ -21,7 +21,7 @@ export default function About() {
     <section
       id="nosotros"
       ref={sectionRef}
-      className="bg-esenza-cream py-24 md:py-32"
+      className="bg-surface-container-low py-24 md:py-32 px-8 md:px-24"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -33,16 +33,19 @@ export default function About() {
                 : "opacity-0 -translate-x-10"
             }`}
           >
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+            <div className="relative group">
+              {/* Glow effect */}
+              <div className="absolute -inset-4 bg-secondary/10 rounded-xl blur-2xl group-hover:bg-secondary/20 transition-all" />
               <img
                 src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1780&auto=format&fit=crop"
                 alt="Esenza - Vista de la naturaleza"
-                className="h-[500px] w-full object-cover"
+                className="relative aspect-[4/5] object-cover rounded-xl shadow-2xl"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-esenza-green-dark/30 to-transparent" />
             </div>
-            {/* Decorative element */}
-            <div className="absolute -bottom-6 -right-6 h-48 w-48 rounded-2xl border-2 border-esenza-gold/30 -z-10" />
+            {/* Floating tag */}
+            <div className="absolute -bottom-8 -right-8 bg-secondary-container p-8 rounded-lg shadow-xl hidden md:block">
+              <p className="font-editorial text-2xl text-secondary italic">Paz Interior</p>
+            </div>
           </div>
 
           {/* Text Content */}
@@ -53,42 +56,41 @@ export default function About() {
                 : "opacity-0 translate-x-10"
             }`}
           >
-            <span className="font-script text-3xl text-esenza-gold">
+            <span className="font-script text-4xl text-secondary">
               Sobre nosotros
             </span>
-            <h2 className="mt-4 font-heading text-4xl md:text-5xl font-light text-esenza-green-dark leading-tight">
+            <h2 className="mt-4 font-editorial text-4xl md:text-5xl text-primary leading-tight">
               Un refugio donde la naturaleza
               <br />
               <span className="font-semibold">sana el alma</span>
             </h2>
 
-            <div className="mt-6 h-px w-16 bg-esenza-gold" />
+            <div className="mt-6 w-24 h-px bg-secondary-container" />
 
-            <p className="mt-8 text-lg leading-relaxed text-esenza-text-light">
-              <strong className="text-esenza-green-dark">Esenza</strong> es un
-              espacio de bienestar inmerso en la naturaleza, diseñado para
-              reconectarte con lo esencial. Ubicada en las montañas cercanas a
-              Bogotá, nuestra finca ofrece una experiencia única de descanso,
-              salud y vitalidad.
+            <p className="mt-8 text-lg leading-relaxed text-on-surface-variant">
+              En el corazón de los Andes colombianos,{" "}
+              <strong className="text-primary">Esenza</strong> nace como un
+              santuario dedicado a la pausa consciente. No somos solo un destino,
+              somos un proceso de retorno a lo esencial.
             </p>
 
-            <p className="mt-4 text-lg leading-relaxed text-esenza-text-light">
-              Rodeada de paisajes verdes, aire puro y la tranquilidad del campo
-              colombiano, Esenza es el lugar perfecto para escapar del ritmo
-              urbano y encontrar tu equilibrio interior.
+            <p className="mt-4 text-lg leading-relaxed text-on-surface-variant">
+              Nuestra filosofía se basa en el respeto profundo por los ciclos
+              naturales, ofreciendo un espacio donde el aire puro y el silencio
+              absoluto son los verdaderos protagonistas de tu renovación.
             </p>
 
-            <div className="mt-10 grid grid-cols-3 gap-6">
+            <div className="mt-10 grid grid-cols-3 gap-6 pt-8 border-t border-outline-variant/30">
               {[
-                { number: "100%", label: "Natural" },
-                { number: "360°", label: "Montañas" },
-                { number: "∞", label: "Paz" },
+                { number: "1.5h", label: "Desde Bogotá" },
+                { number: "2,400", label: "m.s.n.m." },
+                { number: "15+", label: "Hectáreas" },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
-                  <div className="font-heading text-3xl font-bold text-esenza-green">
+                  <div className="text-3xl font-headline text-secondary-container font-bold">
                     {stat.number}
                   </div>
-                  <div className="mt-1 text-sm tracking-wider uppercase text-esenza-text-light">
+                  <div className="mt-1 text-xs uppercase tracking-wider text-outline font-medium">
                     {stat.label}
                   </div>
                 </div>
