@@ -80,7 +80,7 @@ export default function Contact() {
             <img
               alt="Vista aérea de Cundinamarca"
               className="w-full h-full object-cover"
-              src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=800&auto=format&fit=crop"
+              src="/images/entrada-general.webp"
             />
           </div>
 

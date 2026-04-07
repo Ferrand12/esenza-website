@@ -4,27 +4,27 @@ import { useEffect, useRef, useState } from "react";
 
 const images = [
   {
-    src: "https://images.unsplash.com/photo-1505916349660-8d91a4e42890?q=80&w=800&auto=format&fit=crop",
-    alt: "Paisaje montañoso",
+    src: "/images/gallery-piscina-noche.webp",
+    alt: "Piscina iluminada de noche con vista a la ciudad",
     caption: "Renovación",
     span: "col-span-2 row-span-2",
   },
   {
-    src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600&auto=format&fit=crop",
-    alt: "Cabaña en la naturaleza",
-    caption: "Paisaje",
-    span: "col-span-1 row-span-1",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop",
-    alt: "Yoga al amanecer",
+    src: "/images/gallery-yoga.webp",
+    alt: "Zona de yoga al aire libre con vista a las montañas",
     caption: "Yoga",
     span: "col-span-1 row-span-1",
   },
   {
-    src: "https://images.unsplash.com/photo-1475483768296-6163e08872a1?q=80&w=800&auto=format&fit=crop",
-    alt: "Piscina natural",
-    caption: "Piscina natural",
+    src: "/images/gallery-piscina-dia.webp",
+    alt: "Piscina de día con sillas y vista panorámica",
+    caption: "Piscina",
+    span: "col-span-1 row-span-1",
+  },
+  {
+    src: "/images/gallery-deck-noche.webp",
+    alt: "Deck nocturno con velas y luces en los árboles",
+    caption: "Atardecer",
     span: "col-span-2 row-span-1",
   },
 ];

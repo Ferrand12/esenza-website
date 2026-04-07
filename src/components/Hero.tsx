@@ -10,7 +10,7 @@ export default function Hero() {
         <img
           alt="Bosque nuboso en los Andes colombianos"
           className="w-full h-full object-cover opacity-60 scale-105"
-          src="https://images.unsplash.com/photo-1505916349660-8d91a4e42890?q=80&w=1920&auto=format&fit=crop"
+          src="/images/hero-paisaje.webp"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-transparent to-primary/60" />
       </div>

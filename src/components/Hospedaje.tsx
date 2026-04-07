@@ -32,8 +32,8 @@ export default function Hospedaje() {
           {/* Left — image */}
           <div className="w-full md:w-3/5">
             <img
-              src="https://images.unsplash.com/photo-1587061949409-02df41d5e562?q=80&w=800&auto=format&fit=crop"
-              alt="Cabaña rodeada de montañas"
+              src="/images/hospedaje-habitacion.webp"
+              alt="Habitación principal con vista a la naturaleza"
               className="rounded-xl shadow-2xl w-full object-cover h-[500px]"
             />
           </div>

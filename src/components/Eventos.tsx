@@ -7,22 +7,19 @@ const eventos = [
     title: "Celebraciones intimas",
     description:
       "Cumpleanos, aniversarios y encuentros especiales en un entorno natural que hace cada momento memorable.",
-    image:
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800&auto=format&fit=crop",
+    image: "/images/sillas-noche.webp",
   },
   {
     title: "Reuniones corporativas",
     description:
       "Espacios inspiradores para workshops, team building y sesiones de planeacion estrategica fuera de la oficina.",
-    image:
-      "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=800&auto=format&fit=crop",
+    image: "/images/comedor.webp",
   },
   {
     title: "Experiencias a medida",
     description:
       "Disenamos el evento que imaginas. Cuentanos tu vision y la hacemos realidad rodeada de naturaleza.",
-    image:
-      "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=800&auto=format&fit=crop",
+    image: "/images/noche-vino.webp",
   },
 ];
 

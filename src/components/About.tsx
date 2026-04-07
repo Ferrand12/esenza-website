@@ -37,8 +37,8 @@ export default function About() {
               {/* Glow effect */}
               <div className="absolute -inset-4 bg-secondary/10 rounded-xl blur-2xl group-hover:bg-secondary/20 transition-all" />
               <img
-                src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1780&auto=format&fit=crop"
-                alt="Esenza - Vista de la naturaleza"
+                src="/images/about-balcon.webp"
+                alt="Balcón con hamaca y vista panorámica a las montañas"
                 className="relative aspect-[4/5] object-cover rounded-xl shadow-2xl"
               />
             </div>
