@@ -112,9 +112,7 @@ export default function Navbar() {
               )
             )}
             <a
-              href="https://wa.me/573001234567?text=Hola!%20Quiero%20reservar%20en%20Esenza"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/reservar"
               className="ml-2 rounded-full bg-primary-container text-on-primary-container px-6 py-2 font-label text-sm font-semibold tracking-wide uppercase shadow-lg transition-all duration-300 hover:bg-primary hover:text-on-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
             >
               Reservar

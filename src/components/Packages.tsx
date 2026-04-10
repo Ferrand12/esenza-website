@@ -134,11 +134,7 @@ export default function Packages() {
             {/* CTA Button */}
             <div className="mt-auto w-full">
               <a
-                href={`https://wa.me/573001234567?text=${encodeURIComponent(
-                  `Hola! Me interesa el paquete ${pkg.name}`
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/reservar"
                 className={
                   pkg.popular
                     ? "w-full py-4 rounded-full bg-primary text-white font-label text-xs uppercase tracking-widest hover:bg-secondary transition-all shadow-lg gold-glow block text-center"
