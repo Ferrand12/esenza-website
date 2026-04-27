@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 
 const retiros = [
   {
-    title: "Retiro de Yoga & Meditación",
+    title: "Retiro de Yoga y Meditación",
     description:
-      "3 días de práctica profunda con instructores certificados. Sesiones al amanecer, meditación guiada y alimentación consciente.",
+      "Práctica profunda con instructores certificados. Sesiones al amanecer, meditación guiada y alimentación consciente.",
     duration: "3 días",
   },
   {
@@ -16,16 +16,16 @@ const retiros = [
     duration: "2 días",
   },
   {
-    title: "Retiro Corporativo",
+    title: "Retiro de Propósito",
     description:
-      "Fortalece a tu equipo en un entorno inspirador. Dinámicas de grupo, estrategia al aire libre y espacios para la creatividad.",
-    duration: "Personalizado",
+      "Bucea muy dentro de ti, recibe orientación especializada y encuentra tu Ikigai.",
+    duration: "2 días",
   },
   {
-    title: "Escapada Familiar",
+    title: "Retiro Corporativo",
     description:
-      "La finca completa para tu familia. Descanso, naturaleza, cocina campesina y recuerdos que duran toda la vida.",
-    duration: "Fines de semana",
+      "Fortalece a tu equipo en un entorno inspirador. Dinámicas de grupo, estrategia al aire libre y espacios para la creatividad y generación de confianza.",
+    duration: "2 días",
   },
 ];
 
@@ -77,6 +77,12 @@ export default function Retiros() {
 
           {/* Cards — right side, takes 3 cols */}
           <div className="lg:col-span-3 space-y-6">
+            <a
+              href="/retiros/inscripcion"
+              className="inline-flex items-center gap-2 text-sm text-secondary-container hover:text-white border border-secondary-container/50 hover:border-white rounded-full px-5 py-2 uppercase tracking-widest transition-colors"
+            >
+              Inscribirme a un retiro →
+            </a>
             {retiros.map((retiro, i) => (
               <div
                 key={retiro.title}

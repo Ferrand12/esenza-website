@@ -3,19 +3,33 @@
 import { useEffect, useRef, useState } from "react";
 
 const distancias = [
-  { lugar: "Bogotá", tiempo: "~2 horas", km: "85 km", icon: "location_city" },
-  { lugar: "Anapoima", tiempo: "~15 min", km: "12 km", icon: "pin_drop" },
-  { lugar: "Girardot", tiempo: "~45 min", km: "40 km", icon: "home" },
-  { lugar: "La Mesa (pueblo)", tiempo: "~10 min", km: "8 km", icon: "public" },
+  {
+    lugar: "Bogotá",
+    tiempo: "1 h 45 min",
+    km: "74 km",
+    icon: "location_city",
+  },
+  { lugar: "Anapoima", tiempo: "~15 min", km: "10 km", icon: "pin_drop" },
+  { lugar: "La Mesa (pueblo)", tiempo: "~10 min", km: "6 km", icon: "public" },
 ];
 
 const actividades = [
-  { label: "Caminatas", detalle: "Senderos por montaña y cafetales" },
-  { label: "Ríos & piscinas", detalle: "Aguas naturales cerca de Anapoima" },
-  { label: "Pueblo colonial", detalle: "La Mesa y sus calles históricas" },
-  { label: "Clima cálido", detalle: "26–32°C todo el año" },
-  { label: "Avistamiento de aves", detalle: "Más de 150 especies en la región" },
-  { label: "Mercados locales", detalle: "Productos frescos de la región" },
+  {
+    label: "Caminatas",
+    detalle: "Senderos por montañas y caminos veredales",
+  },
+  {
+    label: "Pueblo colonial",
+    detalle: "La Mesa y sus calles históricas, restaurantes y mercados locales",
+  },
+  {
+    label: "Avistamiento de aves",
+    detalle: "Más de 150 especies en la región",
+  },
+  {
+    label: "Turismo de aventura",
+    detalle: "Parque de aventura Macadâmia",
+  },
 ];
 
 export default function Ubicacion() {
@@ -50,14 +64,14 @@ export default function Ubicacion() {
             Cómo llegar
           </p>
           <h2 className="mt-4 font-editorial text-5xl md:text-6xl font-light leading-[1.1] text-on-surface">
-            La Mesa,{" "}
+            Km 63 vía La Mesa–Anapoima,{" "}
             <em className="font-normal not-italic text-primary">
               Cundinamarca
             </em>
           </h2>
           <p className="mt-5 max-w-lg text-base leading-[1.8] text-on-surface-variant">
             Cerca de Anapoima, en la región cálida de Cundinamarca. Un paisaje
-            diferente a solo dos horas de Bogotá.
+            diferente a menos de dos horas de Bogotá.
           </p>
         </div>
 

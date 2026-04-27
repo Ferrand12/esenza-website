@@ -1,29 +1,43 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { PublicImages } from "@/lib/site-images";
 
-const eventos = [
+const EVENTOS_DEFAULTS = [
   {
+    slot: "1",
     title: "Celebraciones intimas",
     description:
       "Cumpleanos, aniversarios y encuentros especiales en un entorno natural que hace cada momento memorable.",
-    image: "/images/sillas-noche.webp",
+    defaultImage: "/images/sillas-noche.webp",
   },
   {
+    slot: "2",
     title: "Reuniones corporativas",
     description:
       "Espacios inspiradores para workshops, team building y sesiones de planeacion estrategica fuera de la oficina.",
-    image: "/images/comedor.webp",
+    defaultImage: "/images/comedor.webp",
   },
   {
+    slot: "3",
     title: "Experiencias a medida",
     description:
       "Disenamos el evento que imaginas. Cuentanos tu vision y la hacemos realidad rodeada de naturaleza.",
-    image: "/images/noche-vino.webp",
+    defaultImage: "/images/noche-vino.webp",
   },
 ];
 
-export default function Eventos() {
+export default function Eventos({ images }: { images?: PublicImages }) {
+  const eventos = EVENTOS_DEFAULTS.map((e) => {
+    const custom = images?.[`eventos/${e.slot}`];
+    return {
+      title: e.title,
+      description: e.description,
+      image: custom?.url || e.defaultImage,
+      imageAlt: custom?.alt || e.title,
+    };
+  });
+
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -78,7 +92,7 @@ export default function Eventos() {
               >
                 <img
                   src={evento.image}
-                  alt={evento.title}
+                  alt={evento.imageAlt}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>

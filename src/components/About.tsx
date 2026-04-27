@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { PublicImages } from "@/lib/site-images";
 
-export default function About() {
+export default function About({ images }: { images?: PublicImages }) {
+  const img = images?.["about/hero-image"];
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -37,8 +39,11 @@ export default function About() {
               {/* Glow effect */}
               <div className="absolute -inset-4 bg-secondary/10 rounded-xl blur-2xl group-hover:bg-secondary/20 transition-all" />
               <img
-                src="/images/about-balcon.webp"
-                alt="Balcón con hamaca y vista panorámica a las montañas"
+                src={img?.url || "/images/about-balcon.webp"}
+                alt={
+                  img?.alt ||
+                  "Balcón con hamaca y vista panorámica a las montañas"
+                }
                 className="relative aspect-[4/5] object-cover rounded-xl shadow-2xl"
               />
             </div>
@@ -68,7 +73,8 @@ export default function About() {
             <div className="mt-6 w-24 h-px bg-secondary-container" />
 
             <p className="mt-8 text-lg leading-relaxed text-on-surface-variant">
-              En el corazón de los Andes colombianos,{" "}
+              En el corazón de los Andes colombianos, entre árboles frutales,
+              cielos amplios y sonidos de la vida,{" "}
               <strong className="text-primary">Esenza</strong> nace como un
               santuario dedicado a la pausa consciente. No somos solo un destino,
               somos un proceso de retorno a lo esencial.
@@ -76,15 +82,17 @@ export default function About() {
 
             <p className="mt-4 text-lg leading-relaxed text-on-surface-variant">
               Nuestra filosofía se basa en el respeto profundo por los ciclos
-              naturales, ofreciendo un espacio donde el aire puro y el silencio
-              absoluto son los verdaderos protagonistas de tu renovación.
+              naturales, ofreciendo un refugio de bienestar natural donde vives
+              experiencias auténticas de bienestar, alegría y aprendizaje.
+              Inspiramos estilos de vida conscientes y renovados conectando el
+              aire puro y la energía de la naturaleza con tu esencia personal.
             </p>
 
             <div className="mt-10 grid grid-cols-3 gap-6 pt-8 border-t border-outline-variant/30">
               {[
-                { number: "1.5h", label: "Desde Bogotá" },
-                { number: "2,400", label: "m.s.n.m." },
-                { number: "15+", label: "Hectáreas" },
+                { number: "74 km", label: "Desde Bogotá · 1 h 45 min" },
+                { number: "700", label: "m.s.n.m." },
+                { number: "24°C", label: "Temperatura promedio" },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
                   <div className="text-3xl font-headline text-secondary-container font-bold">

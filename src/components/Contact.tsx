@@ -1,8 +1,10 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import type { PublicImages } from "@/lib/site-images";
 
-export default function Contact() {
+export default function Contact({ images }: { images?: PublicImages }) {
+  const img = images?.["contact/location"];
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -78,9 +80,9 @@ export default function Contact() {
           {/* Placeholder Image */}
           <div className="rounded-2xl overflow-hidden shadow-2xl h-80">
             <img
-              alt="Vista aérea de Cundinamarca"
+              alt={img?.alt || "Vista aérea de Cundinamarca"}
               className="w-full h-full object-cover"
-              src="/images/entrada-general.webp"
+              src={img?.url || "/images/entrada-general.webp"}
             />
           </div>
 

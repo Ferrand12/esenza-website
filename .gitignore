@@ -39,6 +39,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# supabase CLI workspace metadata
+supabase/.temp/
+
 # claude-flow / mcp
 .claude/
 .claude-flow/

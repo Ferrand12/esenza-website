@@ -7,11 +7,11 @@ export default function Footer() {
           Un oasis de serenidad diseñado para reconectar con tu esencia natural
           en las montañas de Colombia.
         </p>
-        <div className="flex flex-wrap justify-center gap-10 mb-16">
-          <a className="text-stone-300 hover:text-white transition-colors underline-offset-8 hover:underline" href="#">Privacidad</a>
-          <a className="text-stone-300 hover:text-white transition-colors underline-offset-8 hover:underline" href="#">Términos</a>
-          <a className="text-stone-300 hover:text-white transition-colors underline-offset-8 hover:underline" href="#">Sostenibilidad</a>
-          <a className="text-stone-300 hover:text-white transition-colors underline-offset-8 hover:underline" href="#">Trabaja con nosotros</a>
+        <div className="flex flex-wrap justify-center gap-8 mb-16">
+          <a className="text-stone-300 hover:text-white transition-colors underline-offset-8 hover:underline" href="/privacidad">Privacidad</a>
+          <a className="text-stone-300 hover:text-white transition-colors underline-offset-8 hover:underline" href="/terminos">Términos</a>
+          <a className="text-stone-300 hover:text-white transition-colors underline-offset-8 hover:underline" href="/pqrsf">PQRSF</a>
+          <a className="text-stone-300 hover:text-white transition-colors underline-offset-8 hover:underline" href="/resenas">Reseñas</a>
         </div>
         <div className="flex gap-6 mb-16">
           {/* Instagram */}

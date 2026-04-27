@@ -1,35 +1,50 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { PublicImages } from "@/lib/site-images";
 
-const images = [
+const GALLERY_DEFAULTS = [
   {
-    src: "/images/gallery-piscina-noche.webp",
-    alt: "Piscina iluminada de noche con vista a la ciudad",
+    slot: "1",
+    defaultSrc: "/images/gallery-piscina-noche.webp",
+    defaultAlt: "Piscina iluminada de noche con vista a la ciudad",
     caption: "Renovación",
     span: "col-span-2 row-span-2",
   },
   {
-    src: "/images/gallery-yoga.webp",
-    alt: "Zona de yoga al aire libre con vista a las montañas",
+    slot: "2",
+    defaultSrc: "/images/gallery-yoga.webp",
+    defaultAlt: "Zona de yoga al aire libre con vista a las montañas",
     caption: "Yoga",
     span: "col-span-1 row-span-1",
   },
   {
-    src: "/images/gallery-piscina-dia.webp",
-    alt: "Piscina de día con sillas y vista panorámica",
+    slot: "3",
+    defaultSrc: "/images/gallery-piscina-dia.webp",
+    defaultAlt: "Piscina de día con sillas y vista panorámica",
     caption: "Piscina",
     span: "col-span-1 row-span-1",
   },
   {
-    src: "/images/gallery-deck-noche.webp",
-    alt: "Deck nocturno con velas y luces en los árboles",
+    slot: "4",
+    defaultSrc: "/images/gallery-deck-noche.webp",
+    defaultAlt: "Deck nocturno con velas y luces en los árboles",
     caption: "Atardecer",
     span: "col-span-2 row-span-1",
   },
 ];
 
-export default function Gallery() {
+export default function Gallery({ images }: { images?: PublicImages }) {
+  const galleryImages = GALLERY_DEFAULTS.map((g) => {
+    const custom = images?.[`gallery/${g.slot}`];
+    return {
+      src: custom?.url || g.defaultSrc,
+      alt: custom?.alt || g.defaultAlt,
+      caption: g.caption,
+      span: g.span,
+    };
+  });
+
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -60,7 +75,7 @@ export default function Gallery() {
 
       {/* Gallery Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-4 h-[800px] max-w-7xl mx-auto">
-        {images.map((image, i) => (
+        {galleryImages.map((image, i) => (
           <div
             key={image.alt}
             className={`${image.span} overflow-hidden rounded-xl relative group transition-all duration-700 ${

@@ -1,56 +1,22 @@
 "use client";
 
 import {
-  packagePrices,
+  PACKAGE_DEFAULTS,
   calculateTotalPrice,
+  nightsBetween,
   type Package,
 } from "@/lib/validators/booking";
 
-const packages: {
-  key: Package;
-  name: string;
-  subtitle: string;
-  features: string[];
-  recommended?: boolean;
-}[] = [
-  {
-    key: "esencia",
-    name: "Esencia",
-    subtitle: "Escapada básica",
-    features: [
-      "Desayuno campesino",
-      "Caminata por senderos",
-      "Acceso a miradores",
-    ],
-  },
-  {
-    key: "armonia",
-    name: "Armonía",
-    subtitle: "Experiencia Wellness",
-    recommended: true,
-    features: [
-      "Todo lo de Esencia",
-      "Masaje relajante (60m)",
-      "Cena de 3 tiempos",
-      "Clase de Yoga privada",
-    ],
-  },
-  {
-    key: "plenitud",
-    name: "Plenitud",
-    subtitle: "Retiro Total",
-    features: [
-      "Todo lo de Armonía",
-      "Ritual de sanación sonora",
-      "Taller de huerta orgánica",
-      "Traslado VIP ida y vuelta",
-    ],
-  },
+const packages: { key: Package; recommended?: boolean }[] = [
+  { key: "escapada_basica" },
+  { key: "esencia" },
+  { key: "armonia", recommended: true },
 ];
 
 interface Props {
   checkIn: string;
   checkOut: string;
+  numGuests: number;
   selected: Package | null;
   onSelect: (pkg: Package) => void;
   onBack: () => void;
@@ -63,14 +29,12 @@ function formatPrice(n: number): string {
 export default function PackageSelector({
   checkIn,
   checkOut,
+  numGuests,
   selected,
   onSelect,
   onBack,
 }: Props) {
-  const nights = Math.round(
-    (new Date(checkOut).getTime() - new Date(checkIn).getTime()) /
-      (1000 * 60 * 60 * 24),
-  );
+  const nights = nightsBetween(checkIn, checkOut);
 
   return (
     <div>
@@ -78,13 +42,21 @@ export default function PackageSelector({
         Elige tu paquete
       </h2>
       <p className="text-sm text-stone-500 mb-8">
-        {nights} {nights === 1 ? "noche" : "noches"} · Precios por noche
+        {nights} {nights === 1 ? "noche" : "noches"} · {numGuests}{" "}
+        {numGuests === 1 ? "persona" : "personas"} · Precios por persona
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {packages.map((pkg) => {
-          const total = calculateTotalPrice(pkg.key, checkIn, checkOut);
+          const def = PACKAGE_DEFAULTS[pkg.key];
+          const total = calculateTotalPrice(
+            pkg.key,
+            checkIn,
+            checkOut,
+            numGuests,
+          );
           const isSelected = selected === pkg.key;
+          const meetsMin = numGuests >= def.min_guests;
 
           return (
             <button
@@ -106,21 +78,25 @@ export default function PackageSelector({
               )}
 
               <h3 className="font-editorial text-2xl text-primary text-center">
-                {pkg.name}
+                {def.label}
               </h3>
               <p className="text-xs uppercase tracking-widest text-stone-500 text-center mt-1">
-                {pkg.subtitle}
+                {def.subtitle}
               </p>
 
-              <div className="text-center mt-4 mb-6">
+              <div className="text-center mt-4 mb-1">
                 <span className="text-3xl font-headline text-primary">
-                  {formatPrice(packagePrices[pkg.key])}
+                  {formatPrice(def.base_price_per_person)}
                 </span>
-                <span className="text-sm text-stone-500">/noche</span>
+                <span className="text-sm text-stone-500 ml-1">/persona</span>
               </div>
+              <p className="text-[11px] text-center text-stone-500">
+                Grupos mínimo {def.min_guests} personas ·{" "}
+                {formatPrice(def.extra_night_per_person)} noche adicional/pax
+              </p>
 
-              <ul className="space-y-3">
-                {pkg.features.map((f) => (
+              <ul className="mt-5 space-y-3">
+                {def.features.map((f) => (
                   <li
                     key={f}
                     className="flex items-start gap-2 text-sm text-stone-700"
@@ -138,6 +114,11 @@ export default function PackageSelector({
                 <span className="font-headline text-lg text-primary font-semibold">
                   {formatPrice(total)}
                 </span>
+                {!meetsMin && (
+                  <p className="mt-2 text-[11px] text-amber-700">
+                    Requiere mínimo {def.min_guests} personas
+                  </p>
+                )}
               </div>
             </button>
           );

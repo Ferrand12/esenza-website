@@ -1,6 +1,9 @@
 "use client";
 
-export default function Hero() {
+import type { PublicImages } from "@/lib/site-images";
+
+export default function Hero({ images }: { images?: PublicImages }) {
+  const img = images?.["hero/main"];
   return (
     <section
       id="inicio"
@@ -8,9 +11,9 @@ export default function Hero() {
     >
       <div className="absolute inset-0 z-0">
         <img
-          alt="Bosque nuboso en los Andes colombianos"
+          alt={img?.alt || "Bosque nuboso en los Andes colombianos"}
           className="w-full h-full object-cover opacity-60 scale-105"
-          src="/images/hero-paisaje.webp"
+          src={img?.url || "/images/hero-paisaje.webp"}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-transparent to-primary/60" />
       </div>
@@ -21,9 +24,12 @@ export default function Hero() {
         <p className="font-body text-xs md:text-sm tracking-[0.5em] text-white/90 uppercase mb-8 font-light opacity-0 animate-fade-in-up animation-delay-200">
           Natural Wellness Stay
         </p>
-        <h2 className="font-editorial text-3xl md:text-5xl text-white italic font-light mb-12 opacity-0 animate-fade-in-up animation-delay-400">
+        <h2 className="font-editorial text-3xl md:text-5xl text-white italic font-light mb-4 opacity-0 animate-fade-in-up animation-delay-400">
           Naturaleza, reconexión y descanso
         </h2>
+        <p className="font-body text-base md:text-lg text-white/80 max-w-2xl mx-auto mb-12 opacity-0 animate-fade-in-up animation-delay-400">
+          Bienestar y salud con más energía, equilibrio y vitalidad
+        </p>
         <a
           href="#paquetes"
           className="inline-block border border-white/30 backdrop-blur-md text-white px-10 py-4 rounded-full font-label text-sm tracking-widest hover:bg-white hover:text-primary transition-all duration-500 uppercase opacity-0 animate-fade-in-up animation-delay-600"

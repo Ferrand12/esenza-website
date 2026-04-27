@@ -30,9 +30,9 @@ interface Props {
 }
 
 const packageNames: Record<Package, string> = {
+  escapada_basica: "Escapada Básica",
   esencia: "Esencia",
   armonia: "Armonía",
-  plenitud: "Plenitud",
 };
 
 function formatPrice(n: number): string {
@@ -58,7 +58,12 @@ export default function GuestForm({
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const totalPrice = calculateTotalPrice(selectedPackage, checkIn, checkOut);
+  const totalPrice = calculateTotalPrice(
+    selectedPackage,
+    checkIn,
+    checkOut,
+    numGuests,
+  );
   const nights = Math.round(
     (new Date(checkOut).getTime() - new Date(checkIn).getTime()) /
       (1000 * 60 * 60 * 24),
@@ -252,7 +257,9 @@ export default function GuestForm({
             </div>
             <div className="flex justify-between text-xs text-stone-500">
               <span>
-                {formatPrice(packagePrices[selectedPackage])} x {nights} noches
+                {formatPrice(packagePrices[selectedPackage])} /pax × {numGuests}{" "}
+                {numGuests === 1 ? "persona" : "personas"}
+                {nights > 1 ? ` · ${nights - 1} noche(s) extra` : ""}
               </span>
             </div>
             <div className="pt-3 border-t border-stone-300">

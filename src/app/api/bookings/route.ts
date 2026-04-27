@@ -36,6 +36,7 @@ export async function POST(request: Request) {
     input.package,
     input.check_in,
     input.check_out,
+    input.num_guests,
   );
 
   const supabase = createAdminClient();

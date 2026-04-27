@@ -93,6 +93,7 @@ export default function BookingWizard() {
           <PackageSelector
             checkIn={booking.checkIn}
             checkOut={booking.checkOut}
+            numGuests={booking.numGuests}
             selected={booking.selectedPackage}
             onSelect={(pkg) => {
               setBooking((b) => ({ ...b, selectedPackage: pkg }));

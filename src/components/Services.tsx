@@ -6,38 +6,51 @@ const services = [
   {
     icon: "cabin",
     title: "Hospedaje Rural",
-    description:
-      "Cabañas de diseño orgánico que se funden con el paisaje andino.",
+    description: "Simple Luxury — comodidad, belleza natural y sostenibilidad.",
+    items: [] as string[],
   },
   {
     icon: "spa",
     title: "Bienestar & Wellness",
-    description:
-      "Terapias holísticas, yoga al amanecer y masajes con aceites esenciales orgánicos.",
+    description: "",
+    items: [
+      "Terapias holísticas",
+      "Yoga al amanecer",
+      "Ceremonia del Cacao",
+      "Ceremonia del fuego",
+    ],
   },
   {
     icon: "forest",
     title: "Senderos & Naturaleza",
-    description:
-      "Caminatas conscientes por bosques nativos y avistamiento de aves endémicas.",
+    description: "",
+    items: [
+      "Caminatas conscientes por senderos naturales",
+      "Avistamiento de aves endémicas",
+    ],
   },
   {
     icon: "restaurant",
     title: "Gastronomía Local",
-    description:
-      "Cocina km 0 con ingredientes de nuestra huerta y productores de la región.",
+    description: "",
+    items: ["Cocina 0 km con ingredientes y productos de la región"],
   },
   {
     icon: "local_fire_department",
     title: "Fogatas & Noches Estrelladas",
-    description:
-      "Noches de conexión bajo el firmamento con el calor del fuego sagrado.",
+    description: "",
+    items: [
+      "Noches de conexión bajo el firmamento con el calor del fuego sagrado",
+    ],
   },
   {
     icon: "event",
     title: "Eventos & Retiros",
-    description:
-      "Espacios versátiles para encuentros corporativos o celebraciones íntimas.",
+    description: "",
+    items: [
+      "Espacios versátiles para encuentros corporativos o celebraciones íntimas",
+      "Experiencias inmersivas para volver a tu centro",
+    ],
   },
 ];
 
@@ -90,9 +103,26 @@ export default function Services() {
             <h4 className="font-editorial text-2xl text-primary group-hover:text-white mb-4">
               {service.title}
             </h4>
-            <p className="text-on-surface-variant group-hover:text-white/70 font-body text-sm leading-relaxed">
-              {service.description}
-            </p>
+            {service.description && (
+              <p className="text-on-surface-variant group-hover:text-white/70 font-body text-sm leading-relaxed">
+                {service.description}
+              </p>
+            )}
+            {service.items.length > 0 && (
+              <ul className="space-y-2 mt-2">
+                {service.items.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-2 text-sm text-on-surface-variant group-hover:text-white/70 leading-relaxed"
+                  >
+                    <span className="text-secondary group-hover:text-secondary-container mt-0.5">
+                      •
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         ))}
       </div>

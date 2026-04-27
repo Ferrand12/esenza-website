@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { PublicImages } from "@/lib/site-images";
 
-export default function Hospedaje() {
+export default function Hospedaje({ images }: { images?: PublicImages }) {
+  const img = images?.["hospedaje/main"];
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -32,50 +34,55 @@ export default function Hospedaje() {
           {/* Left — image */}
           <div className="w-full md:w-3/5">
             <img
-              src="/images/hospedaje-habitacion.webp"
-              alt="Habitación principal con vista a la naturaleza"
+              src={img?.url || "/images/hospedaje-habitacion.webp"}
+              alt={
+                img?.alt || "Habitación principal con vista a la naturaleza"
+              }
               className="rounded-xl shadow-2xl w-full object-cover h-[500px]"
             />
           </div>
 
           {/* Right — text */}
           <div className="w-full md:w-2/5 space-y-8">
-            <h2 className="font-editorial text-4xl text-primary">
-              Tu refugio privado
-            </h2>
+            <div>
+              <span className="font-script text-3xl text-secondary">
+                Simple Luxury
+              </span>
+              <h2 className="mt-1 font-editorial text-4xl text-primary">
+                Tu refugio privado
+              </h2>
+            </div>
 
             <p className="text-on-surface-variant leading-relaxed">
-              Nuestras estancias están diseñadas para minimizar el impacto
-              ambiental mientras maximizan tu confort. Cada rincón invita a la
-              contemplación.
+              Nuestras estancias están diseñadas bajo el principio de
+              Simple Luxury — comodidad, belleza natural y sostenibilidad.
+              Cada rincón invita al descanso y relajación.
             </p>
 
-            <ul className="space-y-4 font-body text-sm">
-              <li className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-secondary text-xl">
-                  check_circle
-                </span>
-                Vistas panorámicas a la montaña
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-secondary text-xl">
-                  check_circle
-                </span>
-                Chimenea de biomasa
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-secondary text-xl">
-                  check_circle
-                </span>
-                Lencería de algodón orgánico
-              </li>
+            <ul className="grid grid-cols-1 gap-3 font-body text-sm">
+              {[
+                "Vistas panorámicas a la montaña y árboles de frutas tropicales",
+                "Piscina privada con luz nocturna",
+                "Terraza Panorámica",
+                "Zona BBQ",
+                "Zona Fogata",
+                "Salón de juegos y eventos",
+                "Conexión WiFi",
+              ].map((feature) => (
+                <li key={feature} className="flex items-start gap-3">
+                  <span className="material-symbols-outlined text-secondary text-xl shrink-0">
+                    check_circle
+                  </span>
+                  <span>{feature}</span>
+                </li>
+              ))}
             </ul>
 
             <a
-              href="#hospedaje"
+              href="#paquetes"
               className="inline-block border-b-2 border-secondary-container pb-1 text-secondary font-label text-sm uppercase tracking-widest hover:border-secondary transition-all"
             >
-              Ver Cabañas
+              Ver paquetes
             </a>
           </div>
         </div>
