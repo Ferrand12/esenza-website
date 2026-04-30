@@ -1,8 +1,18 @@
 import { NextResponse } from "next/server";
-import ical from "node-ical";
 import { createAdminClient } from "@/lib/supabase/admin";
 
+// node-ical importa módulos que tocan BigInt al cargar el módulo, lo que
+// rompe la fase "Collecting page data" del build de Next 15. Lo cargamos
+// dinámicamente sólo cuando llega un request real.
+type IcalModule = typeof import("node-ical");
+let icalPromise: Promise<IcalModule> | null = null;
+function loadIcal(): Promise<IcalModule> {
+  if (!icalPromise) icalPromise = import("node-ical");
+  return icalPromise;
+}
+
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 export const maxDuration = 60;
 
 /**
@@ -56,7 +66,8 @@ async function handle(request: Request) {
   }
 
   // Fetch + parse iCal
-  let events: ical.CalendarResponse;
+  const ical = await loadIcal();
+  let events: Awaited<ReturnType<typeof ical.async.fromURL>>;
   try {
     events = await ical.async.fromURL(url);
   } catch (e) {
