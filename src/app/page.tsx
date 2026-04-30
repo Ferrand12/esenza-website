@@ -17,39 +17,57 @@ import { getPublicImages } from "@/lib/site-images";
 import { createClient } from "@/lib/supabase/server";
 import type { FeaturedReview } from "@/components/Testimonials";
 
+type FeaturedRow = {
+  id: string;
+  display_name: string;
+  title: string | null;
+  content: string;
+  rating: number;
+};
+
+async function loadHomeData() {
+  try {
+    const images = await getPublicImages();
+    const supabase = await createClient();
+    const [featuredRes, allApprovedRes] = await Promise.all([
+      supabase
+        .from("reviews")
+        .select("id, display_name, title, content, rating")
+        .eq("status", "featured")
+        .order("submitted_at", { ascending: false })
+        .limit(4)
+        .returns<FeaturedRow[]>(),
+      supabase
+        .from("reviews")
+        .select("rating")
+        .in("status", ["approved", "featured"])
+        .returns<{ rating: number }[]>(),
+    ]);
+    return {
+      images,
+      featured: featuredRes.data ?? [],
+      ratings: allApprovedRes.data ?? [],
+    };
+  } catch (e) {
+    console.error("[home] data load failed:", e);
+    return {
+      images: {} as Awaited<ReturnType<typeof getPublicImages>>,
+      featured: [] as FeaturedRow[],
+      ratings: [] as { rating: number }[],
+    };
+  }
+}
+
 export default async function Home() {
-  const images = await getPublicImages();
-  const supabase = await createClient();
-  const [{ data: featured }, { data: allApproved }] = await Promise.all([
-    supabase
-      .from("reviews")
-      .select("id, display_name, title, content, rating")
-      .eq("status", "featured")
-      .order("submitted_at", { ascending: false })
-      .limit(4)
-      .returns<
-        {
-          id: string;
-          display_name: string;
-          title: string | null;
-          content: string;
-          rating: number;
-        }[]
-      >(),
-    supabase
-      .from("reviews")
-      .select("rating")
-      .in("status", ["approved", "featured"])
-      .returns<{ rating: number }[]>(),
-  ]);
-  const reviews: FeaturedReview[] = (featured ?? []).map((r) => ({
+  const { images, featured, ratings } = await loadHomeData();
+
+  const reviews: FeaturedReview[] = featured.map((r) => ({
     id: r.id,
     name: r.display_name,
     title: r.title,
     text: r.content,
     rating: r.rating,
   }));
-  const ratings = allApproved ?? [];
   const avgRating =
     ratings.length > 0
       ? ratings.reduce((s, r) => s + r.rating, 0) / ratings.length
