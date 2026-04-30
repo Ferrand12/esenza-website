@@ -32,7 +32,15 @@ export default function Footer() {
           </a>
         </div>
         <div className="pt-8 border-t border-white/10 w-full text-center text-white/40 font-body text-xs tracking-widest">
-          © {new Date().getFullYear()} Esenza | Natural Wellness Stay. Todos los derechos reservados.
+          <a
+            href="/admin/login"
+            aria-label="Admin"
+            className="cursor-default hover:text-white/60 transition-colors"
+          >
+            ©
+          </a>{" "}
+          {new Date().getFullYear()} Esenza | Natural Wellness Stay. Todos los
+          derechos reservados.
         </div>
       </div>
     </footer>
